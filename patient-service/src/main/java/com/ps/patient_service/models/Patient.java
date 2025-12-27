@@ -1,4 +1,4 @@
-package com.ps.patient_service.model;
+package com.ps.patient_service.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -77,6 +77,4 @@ public class Patient {
     public void setDateRegistered(LocalDate dateRegistered) {
         this.dateRegistered = dateRegistered;
     }
-
-
 }
