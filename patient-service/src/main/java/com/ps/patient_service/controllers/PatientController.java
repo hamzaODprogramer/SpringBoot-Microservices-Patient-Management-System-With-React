@@ -5,6 +5,7 @@ import com.ps.patient_service.dto.PatientRequestDTO;
 import com.ps.patient_service.dto.PatientResponseDTO;
 import com.ps.patient_service.services.PatientService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +15,9 @@ import java.util.List;
 @RequestMapping("/patients")
 public class PatientController {
 
-    private final PatientService patientService;
+    @Autowired
+    private PatientService patientService;
 
-    public PatientController(PatientService patientService){
-        this.patientService = patientService;
-    }
 
     @GetMapping
     public ResponseEntity<List<PatientResponseDTO>> getPatients(){
