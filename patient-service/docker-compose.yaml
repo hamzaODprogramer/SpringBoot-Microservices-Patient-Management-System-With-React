@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  patient-service-db:
+    image: postgres:16
+    container_name: patient-service-db
+    networks:
+      - internal 
+    ports:
+      - 5000:5432
+    volumes:
+      - C:\Users\Hamza OUADOUD\db_volumes\patient-service-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: hamza_od
+      POSTGRES_PASSWORD: 123456
+
+  patient-service:
+    image: patient-service:latest
+    networks:
+      - internal
+    ports:
+      - "4000:4000"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://patient-service-db:5432/db
+      SPRING_DATASOURCE_USERNAME: hamza_od
+      SPRING_DATASOURCE_PASSWORD: 123456
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_SQL_INIT_MODE: always
+networks:
+  internal:
+    driver: bridge

@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import org.springframework.stereotype.Repository;
+
 @Entity
 public class Patient {
     @Id
