@@ -1,5 +1,6 @@
 package com.ps.patient_service.dto;
 
+import com.ps.patient_service.dto.validators.CreatePatientValidationGroup;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -19,7 +20,10 @@ public class PatientRequestDTO {
     @Size(max = 255, message = "Address cannot exceed 255 characters")
     private String address;
 
-    @NotNull(message = "Date of birth is required")
+    @NotNull(
+        groups = CreatePatientValidationGroup.class,
+        message = "Date of birth is required"
+    )
     private String dateOfBirth;
 
     @NotNull(message = "Date registered is required")
