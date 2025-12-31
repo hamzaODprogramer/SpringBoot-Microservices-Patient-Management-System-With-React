@@ -12,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -55,6 +57,18 @@ public class PatientService {
 
         Patient updatedPatient = patientRepository.save(patient);
         return PatientMapper.toDTO(updatedPatient);
+    }
+
+    // Delete Patient
+    public Map<String,String> deletePatient(UUID id){
+        Patient patient = patientRepository.findById(id).orElseThrow(
+                () -> new PatientNotFoundException("Patient not found")
+        );
+        patientRepository.delete(patient);
+
+        Map<String,String> message = new HashMap<>();
+        message.put("message","patient deleted");
+        return message;
     }
 
 }
