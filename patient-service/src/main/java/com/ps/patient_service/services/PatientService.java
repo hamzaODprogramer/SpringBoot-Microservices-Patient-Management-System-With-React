@@ -3,13 +3,17 @@ package com.ps.patient_service.services;
 import com.ps.patient_service.dto.PatientRequestDTO;
 import com.ps.patient_service.dto.PatientResponseDTO;
 import com.ps.patient_service.exceptions.EmailAlreadyExistException;
+import com.ps.patient_service.exceptions.PatientNotFoundException;
 import com.ps.patient_service.mappers.PatientMapper;
 import com.ps.patient_service.models.Patient;
 import com.ps.patient_service.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class PatientService {
@@ -36,6 +40,21 @@ public class PatientService {
         );
 
         return PatientMapper.toDTO(newPatient);
+    }
+
+    // Update existing patient
+    public PatientResponseDTO updatePatient(UUID id, PatientRequestDTO patientRequestDTO){
+        Patient patient = patientRepository.findById(id).orElseThrow(
+                () -> new PatientNotFoundException("Patient not found")
+        );
+
+        patient.setName(patientRequestDTO.getName());
+        patient.setEmail(patientRequestDTO.getEmail());
+        patient.setAddress(patientRequestDTO.getAddress());
+        patient.setDateOfBirth(LocalDate.parse(patientRequestDTO.getDateOfBirth()));
+
+        Patient updatedPatient = patientRepository.save(patient);
+        return PatientMapper.toDTO(updatedPatient);
     }
 
 }
