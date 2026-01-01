@@ -1,0 +1,13 @@
+## GET REQUEST
+GET https://dogapi.dog/api/v1/facts?number=4
+
+###
+
+## POST REQUEST
+POST https://dogapi.dog/api/v1/facts
+Content-Type: application/json
+
+
+{
+  "number": 2
+}
