@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "PatientServiceApplication",
+      "request": "launch",
+      "mainClass": "com.ps.patient_service.PatientServiceApplication",
+      "projectName": "patient-service"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "c:/Users/Hamza OUADOUD/Desktop/Projects/SpringBoot-Microservices-Patient-Management-System-With-React",
+      "program": "c:/Users/Hamza OUADOUD/Desktop/Projects/SpringBoot-Microservices-Patient-Management-System-With-React/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}
